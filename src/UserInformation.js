@@ -20,17 +20,13 @@ function UserInformation() {
       const apiUrl = `https://jsonplaceholder.typicode.com/users/${userId}`;
       fetch(apiUrl)
         .then((res) => res.json())
-        .then(
-          (userInfo) => {
+        .then((userInfo) => {
             setAppState({ isLoaded: true, userInfo: userInfo });
-          },
-          (error) => {
-            setAppState({
-              isLoaded: true,
-              error
-            });
-          }
-        );
+          })
+        .catch((error) => {
+            setAppState({ isLoaded: true, error });
+          });
+      // eslint-disable-next-line
     }, [setAppState]);
   
     const { error, isLoaded, userInfo } = appState;
